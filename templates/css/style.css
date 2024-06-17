@@ -1,0 +1,274 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap');
+
+*{
+    margin: 0;
+    padding: 0;
+
+}
+body{
+     font-family: "Poppins", sans-serif;
+     background-image: url(/templates/assests/library.png); 
+     overflow-x: hidden; 
+        
+}
+html{
+    scroll-behavior: smooth;
+    
+}
+p{
+    color: rgb(255, 255, 255);
+}
+
+/*transition*/
+
+a,
+.btn{
+    transition:all 300ms ease;
+
+}
+/* dsktop nav*/
+nav,
+.nav-links{
+    display: flex;
+} 
+
+nav{
+    justify-content: space-around;
+    align-items: center;
+    height: 17vh;
+}
+.nav-links{
+    gap: 2rem;
+    list-style: none;
+    font-size: 1.5rem;
+}
+a{
+    color: rgb(255, 255, 255);
+    text-decoration: none;
+    text-decoration-color: beige;
+}
+
+a:hover{
+    color: rgb(255, 255, 255);
+    text-decoration: underline;
+    text-underline-offset: 1rem;
+    text-decoration-color: (181,181,181);
+
+}
+.logo{
+    font-size: 2rem;
+
+}
+.logo:hover{
+    cursor:default
+}
+
+
+  
+  .section__pic-container {
+    height: 200px;
+    width: 200px;
+    margin-top: 100px;
+    margin-left:-1000px;
+    padding: 10px;
+    
+  }
+  .about-pic{
+    height: 50%;
+    width: 50%;
+  }
+
+  /*login*/
+  #logintab{
+    display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 50vh;
+  margin-top: -50px;
+  width: 100%;
+  padding: 0 10px;
+  }
+
+  .wrapper {
+    width: 300px;
+    border-radius: 8px;
+    padding: 30px;
+    text-align: center;
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+  }
+  form {
+    display: flex;
+    flex-direction: column;
+  }
+  h2 {
+    font-size: 2rem;
+    margin-bottom: 20px;
+    color: #fff;
+  }
+  .input-field {
+    position: relative;
+    border-bottom: 2px solid #ccc;
+    margin: 15px 0;
+    
+  }
+  .input-field label {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    transform: translateY(-50%);
+    color: #fff;
+    font-size: 16px;
+    pointer-events: none;
+    transition: 0.15s ease;
+  }
+  .input-field input {
+    width: 100%;
+    height: 40px;
+    background: transparent;
+    border: none;
+    outline: none;
+    font-size: 16px;
+    color: #fff;
+  }
+  .input-field input:focus~label,
+  .input-field input:valid~label {
+    font-size: 0.8rem;
+    top: 10px;
+    transform: translateY(-120%);
+  }
+  .forget {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 25px 0 35px 0;
+    color: #fff;
+  }
+  #remember {
+    accent-color: #fff;
+  }
+  .forget label {
+    display: flex;
+    align-items: center;
+  }
+  .forget label p {
+    margin-left: 8px;
+  }
+  .wrapper a {
+    color: #efefef;
+    text-decoration: none;
+  }
+  .wrapper a:hover {
+    text-decoration: underline;
+  }
+  button {
+    background: #fff;
+    color: #000;
+    font-weight: 600;
+    border: none;
+    padding: 12px 20px;
+    cursor: pointer;
+    border-radius: 3px;
+    font-size: 16px;
+    border: 2px solid transparent;
+    transition: 0.3s ease;
+  }
+  button:hover {
+    color: #fff;
+    border-color: #fff;
+    background: rgba(255, 255, 255, 0.15);
+  }
+  .register {
+    text-align: center;
+    margin-top: 30px;
+    color: #fff;
+  }
+
+ 
+/*contact */
+
+
+#contact {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    height: 40vh;
+    color: #ffffff;
+  }
+  .ct{
+    text-align: center;
+  }
+  .cttitle{
+    text-align: center;
+  }
+  .contact-info-upper-container {
+    display: flex;
+    justify-content: center;
+    border-radius: 2rem;
+    border: rgb(255, 255, 255) 0.1rem solid;
+    border-color: rgb(255, 255, 255);
+    background: (250, 250, 250);
+    margin: 2rem auto;
+    padding: 0.5rem;
+  }
+  
+  .contact-info-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    margin: 1rem;
+  }
+  
+  .contact-info-container p {
+    font-size:smaller;
+  }
+  
+  .contact-icon {
+    cursor: default;
+  }
+  
+  .email-icon {
+    height: 2.5rem;
+  }
+
+
+
+  /*footer*/
+
+
+  footer {
+    
+    margin: 1rem;
+  }
+  
+  footer p {
+    text-align: center;
+    color: #ffffff;
+  }
+  /*about*/
+
+  .a2{
+    margin-top:80px;
+    text-align: center;
+    color: #ffffff;
+  }
+
+  .body {
+    /* The image used */
+    background-image: url("./");
+    
+    /* Add the blur effect */
+    filter: blur(8px);
+    -webkit-filter: blur(8px);
+    
+    /* Full height */
+    height: 100%; 
+    
+    /* Center and scale the image nicely */
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
+  

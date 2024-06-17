@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Quicksand:wght@300..700&family=Raleway:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Raleway:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="./css/admin.css">
+    <link rel="stylesheet" type="text/css" href="./css/student.css">
+    <style>
+        .bars1 {
+            width: 45px;
+        }
+        .bars2 {
+            width: 45px;
+        }
+        .bars3 {
+            width: 45px;
+        }
+        .bars4 {
+            width: 45px;
+        }
+        .color {
+            color: green;
+        }
+    </style>
+</head>
+<body>
+    <nav class="nav-bar">
+        <ul>
+            <li><img src="./assests/logo2.png" alt="logo" class="logo"></li>
+            <li class="banner"><a href="student.html" style="text-decoration: none;color:#fff;">Grandhalayam</li>
+            <li class="page1" ><a href="student.html" style="text-decoration: none;color:#fff;">Books</a></li>
+            <li class="page2"><a href="magazine.html" style="text-decoration: none; color:#fff;">Magazines</a></li>
+            <li class="page3"><a href="comic.html" style="text-decoration: none; color:#fff;">Comics</a></li>
+        </ul>
+    </nav>
+    <div class="submenu">
+        <ul>
+          <li><label>sortby</label></li>
+          <li><select name="books" class="book-domain" onchange="change()">
+              <option value="Books">Books</option>
+              <option value="Magazine">Magazine</option>
+              <option value="Comics">Comics</option>
+            </select>
+          </li>
+        </ul>
+        </div>
+        <div class="available">
+         <div class="note"></div>
+         <div class="mag"></div>
+         <div class="com"></div>
+        </div>
+    <script src="./js/taken.js"></script>
+    
+</body>
+</html>

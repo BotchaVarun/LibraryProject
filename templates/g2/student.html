@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Quicksand:wght@300..700&family=Raleway:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Raleway:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="admin.css">
+    <link rel="stylesheet" type="text/css" href="student.css">
+    <style>
+        .bars1 {
+            width: 45px;
+        }
+        .bars2 {
+            width: 45px;
+        }
+        .bars3 {
+            width: 45px;
+        }
+        .bars4 {
+            width: 45px;
+        }
+        .color {
+            color: green;
+        }
+    </style>
+</head>
+<body>
+    <nav class="nav-bar">
+        <ul>
+            <li><img src="logo.png" alt="logo" class="logo"></li>
+            <li class="banner">Grandhalayam</li>
+            <li class="page1" style="color:rgb(255, 255, 255);">Books</li>
+            <li class="page2">Magazines</li>
+            <li class="page3">Comics</li>
+            <li class="account"><img src="profile.png" alt="logo" class="profile" onclick="tog()">
+            <ul class="menu" style="display: flex; flex-direction:column;">
+                <li class="acc-btn" onclick="toggled()">Account</li>
+                <li class="takenbook-btn">TakenBooks</li>
+            </ul></li>
+        </ul>
+    </nav>
+    <div class="overlay" onclick="closed()"></div>
+    <div class="account-profile">
+        <header>
+            <span class="material-symbols-outlined" id="span" onclick="closed()">close</span>
+            <img src="avatar.png" alt="logo" class="prof">
+        </header>
+        <ul>
+            <li>Name:<br><div></div></li>
+            <hr>
+            <li>Phone no:<br><div></div></li>
+            <hr>
+            <li>Email:<br><div></div></li>
+            <hr>
+            <li>Role:<br><div></div></li>
+        </ul>
+        <button onclick="logout()" style="width:100px;height:30px;border-radius:5px;border:1px solid #000;margin-left:180px;">Logout</button> 
+    </div>
+    <div class="submenu">
+        <ul>
+          <li><label>Sort By</label></li>
+          <li><select name="books" class="book-domain">
+              <option value="History">History</option>
+              <option value="Fantasy">Fantasy</option>
+              <option value="Mythological">Mythological</option>
+              <option value="Mystery">Mystery</option>
+            </select>
+          </li>
+        </ul>
+        </div>
+        <div class="available">
+        </div>
+    <script src="student.js"></script>
+    
+</body>
+</html>

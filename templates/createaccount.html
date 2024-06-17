@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Grandhalayam</title>
+    <link rel="stylesheet" href="./css/style.css"/>
+
+
+</head>
+<body>
+
+    <nav id="desktop-nav">
+        <div class="section__pic-container">
+            <img src="./assests/logo.png"alt="profilepicture"class="about-pic"
+            />
+        </div>
+    </nav>
+    <section id class="login">
+        <div class id="logintab">
+            <div class="wrapper">
+            <form action="#">
+              <h2>Create New Acoount</h2>
+              <div class="input-field">
+                <input type="text" id="name" required>
+                <label>Full Name</label>
+              </div>
+                <div class="input-field">
+                <input type="text" id="number" required>
+                <label>Phone Number</label>
+              </div>
+                <div class="input-field">
+                <input type="text" autocomplete="off" id="email" required>
+                <label>Enter your email</label>
+              </div>
+              <div class="input-field">
+                <input type="password" id="password" required>
+                <label>Enter your password</label>
+              </div>
+              <button type="submit" class="btn btn-outline-success btn-lg shadow" onclick="signUp()" >Submit</button>
+            </form>
+          </div>
+        </div>
+
+    </section>
+
+    <section id="about">
+        
+        <h1 class="a2">Get To Know About </h1>
+        <div class="text-container">
+            <p>Welcome to Grandhalayam, a universal open-source platform for seamless book and magazine management. Our mission is to create an accessible digital library where users can effortlessly borrow and return books, explore diverse categories, and stay updated with the latest magazines. Grandhalayam thrives on community contributions, allowing anyone to add and share their favorite reads. Join us to be part of a global community passionate about the free 
+                exchange of knowledge and the love of reading.
+
+            </p>
+        </div>
+    </section>
+    <section id="contact">
+        <p class="ct">Get in Touch</p>
+        <h1 class="cttitle">Contact Me</h1>
+        <div class="contact-info-upper-container">
+          <div class="contact-info-container">
+            <img
+              src="./assests/email.png"
+              alt="Email icon"
+              class="icon contact-icon email-icon"
+            />
+            <p><a href="mailto:varunbotcha@gmail.com">varunbotch@gmail.com</a></p>
+          </div>
+         </div>
+       </section>
+    <footer>
+        <p>Copyright &#169; 2024 Grandhalayam . All Rights Reserved.</p>
+    </footer>
+    <script>
+      async function signUp() {
+        
+
+        const name = document.getElementById("name").value;
+        const phoneno = document.getElementById("number").value;
+        const email = document.getElementById("email").value;
+        const password = document.getElementById("password").value;
+        console.log(email,phoneno,name,password)
+        const options = {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json"
+          },
+          body: JSON.stringify({ name, phoneno, email, password })
+        };
+
+        try {
+          const res = await fetch("http://localhost:3002/signup", options);
+
+          if (res.status === 201) {
+            alert("User created successfully");
+            window.location.href = "index.html";
+          } else if (res.status === 409) {
+            alert("User with this email already exists");
+          } else {
+            alert("An error occurred while signing up");
+          }
+        } catch (error) {
+          console.error("Error:", error);
+          alert("An error occurred while signing up");
+        }
+      }
+      
+    </script>
+    
+
+
+</body>
+</html>

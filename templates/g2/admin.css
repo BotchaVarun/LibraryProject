@@ -1,0 +1,577 @@
+@import url('https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,300;0,400;0,700;0,900;1,300;1,400;1,700;1,900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100..900;1,100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap');
+* {
+    margin: 0;
+    padding: 0;
+    scroll-behavior: smooth;
+}
+
+body  {
+    background-color: white;
+    background-image: url("./image.png");
+    
+
+    
+}
+.nav-bar{
+    position: sticky;
+    top:0;
+    z-index: 1000; /* Ensure they are above normal content */
+    background-color: white;
+    background-image: url("./image.png");
+}
+.nav,.modify, .submenu {
+    position: fixed;
+    background-color: #a1540b;
+    width: 100%;
+}
+.nav{
+    top:80px;
+}
+.modify{
+    top:130px;
+}
+.submenu{
+    top:180px;
+}
+.nav-bar ul {
+    display: flex;
+    flex-direction: row;
+
+    list-style: none;
+}
+
+.logo {
+    width: 100px;
+    height: 100px;
+}
+
+.banner {
+    font-family: "Poppins", serif;
+    font-weight: 700;
+    font-size: 25px;
+    
+    color: rgb(255, 255, 255);
+    padding-top: 40px;
+    padding-left: 2.5rem;
+
+    flex-grow: 55;
+}
+
+.account {
+    
+    padding-top: 32px;
+    flex-grow: 5;
+}
+
+.profile {
+    width: 40px;
+    height: 40px;
+    padding-left: 55px;
+}
+
+.account-profile {
+    width: 500px;
+    height: 500px;
+    margin-left: 350px;
+    position: absolute;
+    margin-top: -30px;
+    border-radius: 15px;
+    
+    display: none;
+    z-index: 1001; /* Ensure it is above the overlay */
+    background-color: white;
+}
+
+/* Overlay styling */
+.overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 1000; /* Ensure it is below the account profile */
+}
+
+header {
+    width: 100%;
+    height: 120px;
+    background: url(back.png);
+    background-size: cover;
+    border-radius: 15px 15px 0px 0px;
+}
+
+header img {
+    width: 120px;
+    height: 120px;
+    margin-top: 60px;
+    position: absolute;
+    margin-left: -5px;
+}
+
+header #span {
+    color: white;
+    position: absolute;
+    margin-top: 15px;
+    left: 460px;
+    transition: color 0.5s ease;
+    cursor: pointer;
+}
+
+.account-profile ul {
+    margin-top: 40px;
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+}
+
+.account-profile ul li {
+    padding: 10px;
+    
+    font-family: "Raleway", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: ExtraLight 200;
+    font-style: normal;
+}
+
+.account-profile ul li div {
+    width: 300px;
+    height: 30px;
+    margin-left: 50px;
+    border-radius: 4px;
+    border: 1px solid #000;
+}
+
+header #span:hover {
+    color: #000;
+}
+/* content center */
+.nav ul{
+    display: flex;
+    flex-direction: row;
+    list-style: none;
+    padding: 15px;
+    gap:10px;
+    
+}
+.nav ul li{
+    
+    display: flex;
+    flex-direction: column;
+    padding: 5px;
+    font-family: "Raleway", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: bold 800;
+    font-style: normal;
+    cursor: pointer;
+}
+.nav ul li div{
+    width:0px; /*45px 80px 90px*/
+    transition: width 0.5s ease;
+    height:2px;
+    border-radius: 2px;
+    
+    background-color:orange;
+}
+.nav ul li .bars1 {
+    width: 45px; /* Example width when selected */
+}
+
+.nav ul li .bars2 {
+    width: 80px; /* Example width when selected */
+}
+
+.nav ul li .bars3 {
+    width: 52px; /* Example width when selected */
+}
+
+.nav ul li .bars4 {
+    width: 42px; /* Example width when selected */
+}
+/*modify bar*/
+.modify ul
+{
+    display: flex;
+    flex-direction: row;
+    
+    padding: 10px;
+    list-style: none;
+    gap:30px;
+}
+.modify ul li{
+    padding: 5px;
+   
+    border-radius: 5px;
+}
+
+/*adding books */
+.add
+{
+    width:800px;
+    height:500px;
+    border:1px solid #000;
+    margin-left: 250px;
+    position: absolute;
+    margin-top: 10px;
+    border-radius: 15px;
+    border: 1px solid #000;
+    background-color: white;
+    display: none;
+}
+.notes{
+    width:100%;
+    height: 100%;
+    border:1px solid #000;
+    border-radius: 15px;
+    display: none;
+}
+.magazine{
+    width:100%;
+    height: 100%;
+    border:1px solid #000;
+    border-radius: 15px;
+    display: none;
+}
+.comics{
+    width:100%;
+    height: 100%;
+    border:1px solid #000;
+    border-radius: 15px;
+    display: none;
+}
+/*books*/
+.notes ul{
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    padding: 15px;
+    
+}
+.notes ul li{
+    border: 1px solid #000;
+    padding: 20px;
+}
+/*magazine*/
+.magazine ul{
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    padding: 15px;
+    
+}
+.magazine ul li{
+    border: 1px solid #000;
+    padding: 20px;
+}
+/*Comic*/
+.comics ul{
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    padding: 15px;
+    
+}
+.comics ul li{
+    border: 1px solid #000;
+    padding: 20px;
+}
+/* common css */
+#file{
+    width:300px;
+    height:25px;
+    margin-left: 20px;
+    font-family: "DM Sans", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: Light 300;
+    font-style: normal;
+}
+#book-name{
+    width:300px;
+    height:25px;
+    font-size:15px;
+    margin-left: 20px;
+    font-family: "DM Sans", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: Light 300;
+    font-style: normal;
+}
+#author-name{
+    width:300px;
+    height:25px;
+    font-size:15px;
+    margin-left: 20px; 
+    font-family: "DM Sans", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: Light 300;
+    font-style: normal;
+}
+#price{
+    width:300px;
+    height:25px;
+    font-size:15px;
+    margin-left: 20px; 
+    font-family: "DM Sans", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: Light 300;
+    font-style: normal;
+}
+#desc{
+    width:400px;
+    height:55px;
+    font-size:15px;
+    margin-left: 180px; 
+    margin-top:-20px;
+    font-family: "DM Sans", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: Light 300;
+    font-style: normal;
+}
+#domain{
+    width:300px;
+    height:25px;
+    font-size:15px;
+    margin-left: 20px; 
+    font-family: "DM Sans", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: Light 300;
+    font-style: normal;
+}
+.book-domain{
+    width:300px;
+    height:25px;
+    font-size:15px;
+    margin-left: 20px; 
+    font-family: "DM Sans", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: Light 300;
+    font-style: normal;
+    border-radius: 2.5rem;
+}
+.magdomain{
+    width:300px;
+    height:25px;
+    font-size:15px;
+    margin-left: 20px; 
+    font-family: "DM Sans", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: Light 300;
+    font-style: normal;
+    display: none;
+}
+.comicdomain{
+    width:300px;
+    height:25px;
+    font-size:15px;
+    margin-left: 20px; 
+    font-family: "DM Sans", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: Light 300;
+    font-style: normal;
+    display: none;
+}
+/* magazine */
+
+#mag-book-name{
+    width:300px;
+    height:25px;
+    font-size:15px;
+    margin-left: 20px;
+    font-family: "DM Sans", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: Light 300;
+    font-style: normal;
+}
+#mag-author-name{
+    width:300px;
+    height:25px;
+    font-size:15px;
+    margin-left: 20px; 
+    font-family: "DM Sans", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: Light 300;
+    font-style: normal;
+}
+#mag-price{
+    width:300px;
+    height:25px;
+    font-size:15px;
+    margin-left: 20px; 
+    font-family: "DM Sans", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: Light 300;
+    font-style: normal;
+}
+#mag-desc{
+    width:400px;
+    height:55px;
+    font-size:15px;
+    margin-left: 180px; 
+    margin-top:-20px;
+    font-family: "DM Sans", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: Light 300;
+    font-style: normal;
+}
+#mag-domain{
+    width:300px;
+    height:25px;
+    font-size:15px;
+    margin-left: 20px; 
+    font-family: "DM Sans", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: Light 300;
+    font-style: normal;
+}
+/* comic */
+
+#comic-book-name{
+    width:300px;
+    height:25px;
+    font-size:15px;
+    margin-left: 20px;
+    font-family: "DM Sans", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: Light 300;
+    font-style: normal;
+}
+#comic-author-name{
+    width:300px;
+    height:25px;
+    font-size:15px;
+    margin-left: 20px; 
+    font-family: "DM Sans", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: Light 300;
+    font-style: normal;
+}
+#comic-price{
+    width:300px;
+    height:25px;
+    font-size:15px;
+    margin-left: 20px; 
+    font-family: "DM Sans", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: Light 300;
+    font-style: normal;
+}
+#comic-desc{
+    width:400px;
+    height:55px;
+    font-size:15px;
+    margin-left: 180px; 
+    margin-top:-20px;
+    font-family: "DM Sans", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: Light 300;
+    font-style: normal;
+}
+#comic-domain{
+    width:300px;
+    height:25px;
+    font-size:15px;
+    margin-left: 20px; 
+    font-family: "DM Sans", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: Light 300;
+    font-style: normal;
+}
+.add #span{
+    position: absolute;
+    margin-left: 760px;
+    margin-top: 10px;
+    cursor: pointer;
+}
+.add nav{
+    display: flex;
+    flex-direction:row;
+    justify-content: flex-end;
+    margin-top:-10px;
+    margin-right:20px;
+    gap:10px;
+}
+.add-btn{
+    font-family: "Quicksand", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 600;
+    font-style: normal;
+    width:80px;
+    height:30px;
+    cursor: pointer;
+}
+.cancel-btn{
+    font-family: "Quicksand", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 600;
+    font-style: normal;
+    width:80px;
+    height:30px;
+    cursor: pointer;
+    border:1px solid #000;
+    border-radius:5px;
+}
+.available{
+    margin-top:120px;
+}
+.data{
+    display: flex;
+    flex-direction:row;
+    height:150px;
+    border: 1px solid #000;
+    padding: 10px;
+}
+.data img{
+    width: 150px;
+    height: 80px;
+    border: 1px solid #000;
+}
+.data ul{
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    width:100%;
+    margin-left: 20px;
+    list-style: none;
+    text-transform: capitalize;
+}
+hr{
+    width:500px;
+}
+.data.ul-one{
+ 
+}
+.ul-one li{
+    width:80%;
+    
+    padding: 7px;
+}
+
+.ul-two li{
+    width:100%;
+    margin-left: -30px;
+    padding: 10px;
+}
+.submenu
+{
+    border: 1px solid #000;
+    padding: 5px;
+}
+.submenu ul{
+    display: flex;
+    flex-direction: row;
+    margin-left: 20px;
+    list-style: none;
+}
+.submenu ul li label{
+    font-size: 20px;
+    font-family: "Poppins", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: Light 300;
+    font-style: normal;
+    color: rgb(255, 255, 255);
+}
+
+

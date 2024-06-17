@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Quicksand:wght@300..700&family=Raleway:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Raleway:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="./css/admin.css">
+    <style>
+        .bars1 {
+            width: 45px;
+        }
+        .bars2 {
+            width: 45px;
+        }
+        .bars3 {
+            width: 45px;
+        }
+        .bars4 {
+            width: 45px;
+        }
+        .color {
+            color: green;
+        }
+    </style>
+</head>
+<body>
+    <nav class="nav-bar">
+        <ul>
+            <li><img src="./assests/logo2.png" alt="logo" class="logo"></li>
+            <li class="banner">Grandhalayam</li>
+            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+            <li class="account"><img src="./assests/avatar.png" alt="logo" class="profile" onclick="toggled()"></li>
+        </ul>
+    </nav>
+    <div class="overlay" onclick="closed()"></div>
+    <div class="account-profile">
+        <header>
+            <span class="material-symbols-outlined" id="span" onclick="closed()">close</span>
+            <img src="./assests/avatar.png" alt="logo" class="prof">
+        </header>
+        <ul>
+            <li>Name:<br><div id="name"></div></li>
+            <hr>
+            <li>Phone no:<br><div id="phone"></div></li>
+            <hr>
+            <li>Email:<br><div id="email"></div></li>
+            <hr>
+            <li>Role:<br><div id="role"></div></li>
+        </ul>
+        <button onclick="logout()" style="width:100px;height:30px;border-radius:5px;border:1px solid #000;margin-left:180px;">Logout</button>
+    </div>
+    <div class="nav">
+        <ul>
+            <li onclick="books()" id="bar1">Books
+                <div class="bar1"></div>
+            </li>
+            <li onclick="magazines()" id="bar2">Magazines
+                <div class="bar2"></div>
+            </li>
+            <li onclick="comic()" id="bar3">Comics
+                <div class="bar3"></div>
+            </li>
+            <li onclick="users()" id="bar4">Users
+                <div class="bar4"></div>
+            </li>
+        </ul>
+    </div>
+    <div class="modify">
+        <ul>
+            <li style="background-color: rgb(15, 130, 15); color:#fff;  font-family: Montserrat, sans-serif;font-optical-sizing: auto;font-weight: 500;font-style: normal;cursor:pointer;" onclick="fun()"><i class="fa-solid fa-circle-plus" style="color:rgb(111, 244, 235);width:20px; height:20px;"></i>Add</li>
+            <!-- <li style="color:#000;cursor:pointer; font-family: Montserrat, sans-serif;font-optical-sizing: auto;font-weight: 500;font-style: normal;"><i class="fa-solid fa-trash fa-bounce" style="color:rgb(121, 121, 121);width:20px; height:20px;"></i>Delete</li> -->
+        </ul>
+    </div>
+    <div class="submenu">
+      <ul>
+        <li><label style="color:#fff;">sortby</label></li>
+        <li><select name="books" class="book-domain">
+            <option value="History">History</option>
+            <option value="Fantasy">Fantasy</option>
+            <option value="Mythological">Mythological</option>
+            <option value="Mystery">Mystery</option>
+          </select> 
+          <select name="Magazine" class="magdomain">
+                 <option value="Technology">Technology</option>
+                 <option value="Travel">Travel</option>
+                 <option value="Food and Cooking">Food and Cooking</option>
+                 <option value="Entertainmet">Entertainmet</option>
+           </select> 
+           <select name="comic" class="comicdomain">
+            <option value="Action/Adventure">Action/Adventure</option>
+            <option value="Drama">Drama</option>
+            <option value="Fantasy">Fantasy</option>
+            <option value="Comedy">Comedy</option>
+          </select>
+          <select name="user" class="user-panel">
+          </select>
+        </li>
+    </div>
+    <div class="add">
+        <span class="material-symbols-outlined" id="span" onclick="nope()">close</span>
+        <div class="notes">
+           <ul>
+            <li style="font-family: Quicksand, sans-serif;font-optical-sizing: auto;font-weight: 500;font-style: normal;">Enter Book Preview:<input type="file" id="file"></li>
+            <li style="font-family: Quicksand, sans-serif;font-optical-sizing: auto;font-weight: 500;font-style: normal;">Enter Book Name:<input type="text" id="book-name"></li>
+            <li style="font-family: Quicksand, sans-serif;font-optical-sizing: auto;font-weight: 500;font-style: normal;">Enter Author Name:<input type="text" id="author-name"></li>
+            <li style="font-family: Quicksand, sans-serif;font-optical-sizing: auto;font-weight: 500;font-style: normal;">Enter Book Price:<input type="text" id="price"></li>
+            <li style="font-family: Quicksand, sans-serif;font-optical-sizing: auto;font-weight: 500;font-style: normal;">Enter Book Description:<br><textarea id="desc"rows="4" cols="50"></textarea></li>
+            <li style="font-family: Quicksand, sans-serif;font-optical-sizing: auto;font-weight: 500;font-style: normal;">Choose Book Domain:<select name="books" id="domain">
+                <option value="History">History</option>
+                <option value="Fantasy">Fantasy</option>
+                <option value="Mythological">Mythological</option>
+                <option value="Mystery">Mystery</option>
+
+              </select> </li>
+           </ul>
+           <nav>
+            <button class="add-btn" style="background-color: rgb(15, 130, 15); color:#fff; border:0;border-radius:5px;" onclick="insertBook()">Insert</button>
+            <button class="cancel-btn" onclick="nope()">Cancel</button>
+         </nav>
+        </div>
+        <div class="magazine">
+            <ul>
+             <li style="font-family: Quicksand, sans-serif;font-optical-sizing: auto;font-weight: 500;font-style: normal;">Enter Magazine Preview:<input type="file" id="mag-file"></li>
+             <li style="font-family: Quicksand, sans-serif;font-optical-sizing: auto;font-weight: 500;font-style: normal;">Enter Magazine Name:<input type="text" id="mag-name"></li>
+             <li style="font-family: Quicksand, sans-serif;font-optical-sizing: auto;font-weight: 500;font-style: normal;">Enter Author Name:<input type="text" id="mag-author-name"></li>
+             <li style="font-family: Quicksand, sans-serif;font-optical-sizing: auto;font-weight: 500;font-style: normal;">Enter Magazine Price:<input type="text" id="mag-price"></li>
+             <li style="font-family: Quicksand, sans-serif;font-optical-sizing: auto;font-weight: 500;font-style: normal;">Enter Magazine Description:<br><textarea id="mag-desc"rows="4" cols="50" style="margin-left:220px;"></textarea></li>
+             <li style="font-family: Quicksand, sans-serif;font-optical-sizing: auto;font-weight: 500;font-style: normal;">Choose Magazine Genre:<select name="Magazine" id="mag-domain">
+                 <option value="Technology">Technology</option>
+                 <option value="Travel">Travel</option>
+                 <option value="Food and Cooking">Food and Cooking</option>
+                 <option value="Entertainmet">Entertainmet</option>
+               </select> </li>
+            </ul>
+            <nav>
+                <button class="add-btn" style="background-color: rgb(15, 130, 15); color:#fff; border:0;border-radius:5px;" onclick="insertMagazine()">Insert</button>
+                <button class="cancel-btn" onclick="nope()">Cancel</button>
+             </nav>
+         </div>
+         <div class="comics">
+            <ul>
+             <li style="font-family: Quicksand, sans-serif;font-optical-sizing: auto;font-weight: 500;font-style: normal;">Enter Comic Preview:<input type="file" id="comic-file"></li>
+             <li style="font-family: Quicksand, sans-serif;font-optical-sizing: auto;font-weight: 500;font-style: normal;">Enter Comic Name:<input type="text" id="comic-name"></li>
+             <li style="font-family: Quicksand, sans-serif;font-optical-sizing: auto;font-weight: 500;font-style: normal;">Enter Author Name:<input type="text" id="comic-author-name"></li>
+             <li style="font-family: Quicksand, sans-serif;font-optical-sizing: auto;font-weight: 500;font-style: normal;">Enter Comic Price:<input type="text" id="comic-price"></li>
+             <li style="font-family: Quicksand, sans-serif;font-optical-sizing: auto;font-weight: 500;font-style: normal;">Enter Comic Description:<br><textarea id="comic-desc"rows="4" cols="50" style="margin-left:220px;"></textarea></li>
+             <li style="font-family: Quicksand, sans-serif;font-optical-sizing: auto;font-weight: 500;font-style: normal;">Choose Comic Genre:<select name="comic" id="comic-domain">
+                 <option value="Action/Adventure">Action/Adventure</option>
+                 <option value="Drama">Drama</option>
+                 <option value="Fantasy">Fantasy</option>
+                 <option value="Comedy">Comedy</option>
+               </select> </li>
+            </ul>
+            <nav>
+                <button class="add-btn" style="background-color: rgb(15, 130, 15); color:#fff; border:0;border-radius:5px;" onclick="insertComic()">Insert</button>
+                <button class="cancel-btn" onclick="nope()">Cancel</button>
+             </nav>
+         </div>
+         <div class="users">
+            <ul>
+             <li style="font-family: Quicksand, sans-serif;font-optical-sizing: auto;font-weight: 500;font-style: normal;">Enter User Name:<input type="text" id="username"></li>
+             <li style="font-family: Quicksand, sans-serif;font-optical-sizing: auto;font-weight: 500;font-style: normal;">Enter Email:<input type="text" id="useremail"></li>
+             <li style="font-family: Quicksand, sans-serif;font-optical-sizing: auto;font-weight: 500;font-style: normal;">Enter phoneno:<input type="text" id="phoneno"></li>
+             <li style="font-family: Quicksand, sans-serif;font-optical-sizing: auto;font-weight: 500;font-style: normal;">Enter password:<input type="password" id="password"></li>
+            </ul>
+            <nav>
+                <button class="add-btn" style="background-color: rgb(15, 130, 15); color:#fff; border:0;border-radius:5px;" onclick="insertUser()">Insert</button>
+                <button class="cancel-btn" onclick="nope()">Cancel</button>
+             </nav>
+         </div>
+    </div>
+    <div class="available">
+    </div>
+    <script src="./js/admin.js"></script>
+</body>
+</html>

@@ -1,0 +1,105 @@
+.banner{
+    flex-grow: 55;
+}
+.page1
+{
+    
+    flex-grow: 5;
+    padding-top: 45px;
+    font-family: "Raleway", sans-serif;
+    font-optical-sizing: auto;
+    font-weight:  600;
+    font-style: normal;
+    cursor: pointer;
+    
+}
+.page2
+{
+   
+    flex-grow: 5;
+    padding-top: 45px;
+    font-family: "Raleway", sans-serif;
+    font-optical-sizing: auto;
+    font-weight:  600;
+    font-style: normal;
+    cursor: pointer;
+}
+.page3
+{
+    
+    flex-grow: 5;
+    padding-top: 45px;
+    font-family: "Raleway", sans-serif;
+    font-optical-sizing: auto;
+    font-weight:  600;
+    font-style: normal;
+    cursor: pointer;
+}
+.nav-bar ul li a:hover{
+   color:green;
+}
+.menu
+{   
+    position: absolute;
+    width: 200px;
+    height:0px;
+    margin-top: 25px;
+    margin-left:-80px;
+   
+    overflow: hidden;
+    background-color: antiquewhite;
+    transition: height 0.5s ease;
+}
+.menu.increase
+{ 
+    height:100px;
+}
+.menu li{
+    padding: 14px;
+    font-family: "Raleway", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 600;
+    border: 1px solid #000;
+    font-style: normal;
+    cursor: pointer;
+}
+.acc-btn:hover
+{
+ background-color: aquamarine;
+ color:#fff;
+}
+.takenbook-btn:hover
+{
+    background-color: aquamarine;
+    color:#fff;  
+}
+/*sort by*/
+.submenu
+{
+    border:1px solid #000;
+    margin-top:-76px;
+}
+.available
+{
+    margin-top:45px;
+}
+/*available data */
+.borrow-btn
+{
+ padding:5px;
+ border-radius: 5px;
+ border:1px solid #000;
+ font-family: "DM Sans", sans-serif;
+ font-optical-sizing: auto;
+ font-weight: 600;
+ cursor:pointer;
+ background-color: green;
+ color:#fff;
+ font-style: normal;
+}
+.magdomain{
+    display: block;
+}
+.comicdomain{
+    display: block;
+}
