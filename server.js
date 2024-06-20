@@ -7,9 +7,9 @@ const multer = require('multer');
 const storage = multer.memoryStorage();
 const upload = multer({ storage: storage });
 app.use(upload.single('image'));
-// Set up CORS options
+
 const corsOptions = {
-  origin: 'http://127.0.0.1:5500',
+  origin: 'http://127.0.0.1:5501',
   optionsSuccessStatus: 200 
 };
 
@@ -95,7 +95,7 @@ app.post("/signup", jsonparser, (req, res) => {
     .then(existingUser => {
       if (existingUser) {
         console.log("User with this email already exists");
-        res.status(409).send("User with this email already exists"); // 409 Conflict
+        res.status(409).send("User with this email already exists"); 
       } else {
         const newUser = new User({
           name,
@@ -107,7 +107,7 @@ app.post("/signup", jsonparser, (req, res) => {
         newUser.save()
           .then(() => {
             console.log("Saved user to MongoDB");
-            res.status(201).send("User created successfully"); // 201 Created
+            res.status(201).send("User created successfully"); 
           })
           .catch((error) => {
             console.error(error);
@@ -123,29 +123,31 @@ app.post("/signup", jsonparser, (req, res) => {
     });
 });
 
-
-app.post('/signin', (req, res) => {
+app.post('/signin', async (req, res) => {
   const { email, password } = req.body;
-  console.log(email, password);
-  User.findOne({ email, password })
-    .then(user => {
+  console.log(`Attempting sign-in with email: ${email}`);  
+
+  try {
+      const user = await User.findOne({ email, password });
       if (user) {
-        console.log("login successfully");
-        res.status(200).send("Sign-in successful");
-        const log = new Log({
-          takenBy: user._id,
-          status: "true"
-        });
-        log.save();
+          console.log("Login successfully");
+
+          const log = new Log({
+              takenBy: user._id,
+              status: "true"
+          });
+
+          await log.save();  
+
+          res.status(200).send("Sign-in successful");
       } else {
-        res.status(401).send("Invalid credentials");
-        console.log("Invalid credentials");
+          console.log("Invalid credentials");
+          res.status(401).send("Invalid credentials");
       }
-    })
-    .catch(error => {
+  } catch (error) {
       console.error(error);
       res.status(500).send("Error during sign-in");
-    });
+  }
 });
 
 // Route to handle file and form data
@@ -174,6 +176,7 @@ app.post('/signin', (req, res) => {
   
 //     console.log("New book created: ", newBook);
 //   });
+//inserting a new book
 app.post('/addbook', bodyparser.json(), (req, res) => {
     const newBook = new Book({
         author: req.body.author,
@@ -229,7 +232,7 @@ app.post('/taken', bodyparser.json(), (req, res) => {
             res.status(200).send("Book is taken");
           });
       } else {
-        res.status(409).send("Book is already taken"); // 409 Conflict is a more appropriate status code
+        res.status(409).send("Book is already taken");
       }
     })
     .catch((error) => {
@@ -237,7 +240,7 @@ app.post('/taken', bodyparser.json(), (req, res) => {
       res.status(500).send("Error while taking book");
     });
 });
-// Update your DELETE route to use findByIdAndDelete
+
 // DELETE route for books
 app.delete('/deletebook/:id', (req, res) => {
     const bookId = req.params.id;
@@ -292,9 +295,9 @@ app.put('/books/:id', bodyparser.json(), (req, res) => {
   const bookId = req.params.id;
   const newStatus = req.body.status;
   const currentDate = new Date();
-  // Find a recent log entry for the current user
+
   Log.findOne({ status: "true" }).then(log => {
-    // Update book status and takenBy in MongoDB
+
     Book.findByIdAndUpdate(bookId, { status: newStatus, takenBy: log.takenBy, date: currentDate }, { new: true })
       .then(updatedBook => {
         if (!updatedBook) {
@@ -315,22 +318,22 @@ app.put('/books/:id', bodyparser.json(), (req, res) => {
 // Endpoint to fetch books
 app.get('/book', async (req, res) => {
   try {
-      const domain = req.query.domain; // Get domain from query parameters
-      let query = { status: "available" }; // Default query to fetch only available books
+      const domain = req.query.domain; 
+      let query = { status: "available" }; 
 
       if (domain) {
-          query.domain = domain; // Add domain filter if provided
+          query.domain = domain; 
       }
 
       const books = await Book.find(query);
 
-      // Map books to include base64 encoded image
+      
       const booksWithBase64Image = books.map(book => ({
           ...book._doc,
           image: book.image ? {
-              data: book.image.data.toString('base64'), // Convert buffer to base64 string
+              data: book.image.data.toString('base64'), 
               contentType: book.image.contentType
-          } : null // Handle case when image is not available
+          } : null
       }));
 
       res.json(booksWithBase64Image);
@@ -342,14 +345,14 @@ app.put('/magazine/:id', bodyparser.json(), (req, res) => {
   const bookId = req.params.id;
   const newStatus = req.body.status;
   const currentDate = new Date();
-  // Find a recent log entry for the current user
+  
   Log.findOne({ status: "true" })
     .then(log => {
       if (!log) {
         return res.status(404).json({ error: 'No active log entry found' });
       }
 
-      // Update magazine status and takenBy in MongoDB
+      
       Mag.findByIdAndUpdate(bookId, { status: newStatus, takenBy: log.takenBy,date: currentDate }, { new: true })
         .then(updatedBook => {
           if (!updatedBook) {
@@ -371,14 +374,14 @@ app.put('/comic/:id', bodyparser.json(), (req, res) => {
   const bookId = req.params.id;
   const newStatus = req.body.status;
   const currentDate = new Date();
-  // Find a recent log entry for the current user
+  
   Log.findOne({ status: "true" })
     .then(log => {
       if (!log) {
         return res.status(404).json({ error: 'No active log entry found' });
       }
 
-      // Update magazine status and takenBy in MongoDB
+    
       Com.findByIdAndUpdate(bookId, { status: newStatus, takenBy: log.takenBy,date:currentDate}, { new: true })
         .then(updatedBook => {
           if (!updatedBook) {
@@ -406,13 +409,13 @@ app.get('/takenbooks', async (req, res) => {
 
     const books = await Book.find({ takenBy: log.takenBy, status: "taken" });
 
-    // Map books to include base64 encoded image
+  
     const booksWithBase64Image = books.map(book => ({
       ...book._doc,
       image: book.image ? {
-        data: book.image.data.toString('base64'), // Convert buffer to base64 string
+        data: book.image.data.toString('base64'),
         contentType: book.image.contentType
-      } : null // Handle case when image is not available
+      } : null 
     }));
 
     res.status(200).json(booksWithBase64Image);
@@ -430,13 +433,13 @@ app.get('/takenmagazine', async (req, res) => {
 
     const books = await Mag.find({ takenBy: log.takenBy, status: "taken" });
 
-    // Map books to include base64 encoded image
+ 
     const booksWithBase64Image = books.map(book => ({
       ...book._doc,
       image: book.image ? {
-        data: book.image.data.toString('base64'), // Convert buffer to base64 string
+        data: book.image.data.toString('base64'),
         contentType: book.image.contentType
-      } : null // Handle case when image is not available
+      } : null 
     }));
 
     res.status(200).json(booksWithBase64Image);
@@ -454,13 +457,13 @@ app.get('/takencomic', async (req, res) => {
 
     const books = await Com.find({ takenBy: log.takenBy, status: "taken" });
 
-    // Map books to include base64 encoded image
+
     const booksWithBase64Image = books.map(book => ({
       ...book._doc,
       image: book.image ? {
-        data: book.image.data.toString('base64'), // Convert buffer to base64 string
+        data: book.image.data.toString('base64'), 
         contentType: book.image.contentType
-      } : null // Handle case when image is not available
+      } : null 
     }));
 
     res.status(200).json(booksWithBase64Image);
@@ -470,7 +473,7 @@ app.get('/takencomic', async (req, res) => {
   }
 });
 
-// Endpoint to add a new book
+
 app.post('/book', bodyparser.json(), (req, res) => {
   const newBook = new Book({ name: req.body.name, status: req.body.status || 'available' });
   newBook.save()
@@ -483,7 +486,7 @@ app.put('/logout', bodyparser.json(), (req, res) => {
       return res.status(404).send("No active session found");
     }
     
-    // Update the log document
+
     log.status = "false";
     log.save()
       .then(() => {
@@ -499,27 +502,27 @@ app.put('/logout', bodyparser.json(), (req, res) => {
   });
 });
 /* login user information */
-// Add this endpoint to fetch user details
+
 app.get('/user', async (req, res) => {
   try {
-    // Check if there is an active session/logged-in user
+   
     const log = await Log.findOne({ status: "true" });
     if (!log) {
       return res.status(404).send("No active session found");
     }
 
-    // Fetch user details based on the logged-in user's ID
+   
     const user = await User.findById(log.takenBy);
     if (!user) {
       return res.status(404).send("User not found");
     }
 
-    // Return user details
+   
     res.status(200).json({
       email: user.email,
       name:user.name,
       phone:user.phoneno
-      // Add any other user information you want to return
+     
     });
   } catch (error) {
     console.error('Error fetching user details:', error);
@@ -547,10 +550,10 @@ app.get('/users', async (req, res) => {
 });
 
 // Route to get books taken by a specific user
-// Fetch books borrowed by a specific user
+
 
 // Route to fetch books, magazines, and comics borrowed by a specific user
-// Route to fetch books, magazines, and comics borrowed by a specific user
+
 app.get('/users/:userId/items', async (req, res) => {
   try {
     const userId = req.params.userId;
@@ -560,33 +563,33 @@ app.get('/users/:userId/items', async (req, res) => {
       return res.status(404).send("User not found");
     }
 
-    // Default query to fetch items taken by the user
+  
     let query = { takenBy: userId };
 
-    // Check if domain filter is provided in query parameters
+    
     const domain = req.query.domain;
     if (domain) {
       query.domain = domain;
     }
 
-    // Fetch books, magazines, and comics for the user with status "taken"
+ 
     const [books, magazines, comics] = await Promise.all([
       Book.find({ ...query, status: "taken" }).lean(),
       Mag.find({ ...query, status: "taken" }).lean(),
       Com.find({ ...query, status: "taken" }).lean()
     ]);
 
-    // Map books to include base64 encoded image and title
+   
     const booksWithBase64Image = books.map(book => ({
       ...book,
       image: book.image ? {
-        data: book.image.data.toString('base64'), // Convert buffer to base64 string
+        data: book.image.data.toString('base64'),
         contentType: book.image.contentType
       } : null,
-      type: 'book' // Include item type
+      type: 'book' 
     }));
 
-    // Map magazines to include base64 encoded image and title
+   
     const magazinesWithBase64Image = magazines.map(magazine => ({
       ...magazine,
       image: magazine.image ? {
@@ -596,7 +599,7 @@ app.get('/users/:userId/items', async (req, res) => {
       type: 'magazine'
     }));
 
-    // Map comics to include base64 encoded image and title
+    
     const comicsWithBase64Image = comics.map(comic => ({
       ...comic,
       image: comic.image ? {
@@ -606,7 +609,7 @@ app.get('/users/:userId/items', async (req, res) => {
       type: 'comic'
     }));
 
-    // Construct response object including user email, name, and items data
+
     const response = {
       userEmail: user.email,
       userName: user.name,
@@ -624,20 +627,20 @@ app.get('/users/:userId/items', async (req, res) => {
 /* magazine */
 app.get('/magazine', async (req, res) => {
     try {
-      const domain = req.query.domain; // Get domain from query parameters
-      let query = { status: "available" }; // Default query to fetch only available books
+      const domain = req.query.domain; 
+      let query = { status: "available" }; 
 
       if (domain) {
-          query.domain = domain; // Add domain filter if provided
+          query.domain = domain; 
       }
 
       const books = await Mag.find(query);
 
-      // Map books to include base64 encoded image
+     
       const magazinesWithBase64Image = books.map(book => ({
           ...book._doc,
           image: book.image ? {
-              data: book.image.data.toString('base64'), // Convert buffer to base64 string
+              data: book.image.data.toString('base64'), 
               contentType: book.image.contentType
           } : null 
         }));
@@ -650,20 +653,20 @@ app.get('/magazine', async (req, res) => {
 });
 app.get('/comic', async (req, res) => {
     try {
-      const domain = req.query.domain; // Get domain from query parameters
-      let query = { status: "available" }; // Default query to fetch only available books
+      const domain = req.query.domain; 
+      let query = { status: "available" }; 
 
       if (domain) {
-          query.domain = domain; // Add domain filter if provided
+          query.domain = domain;
       }
 
       const books = await Com.find(query);
 
-      // Map books to include base64 encoded image
+     
       const comicsWithBase64Image = books.map(book => ({
           ...book._doc,
           image: book.image ? {
-              data: book.image.data.toString('base64'), // Convert buffer to base64 string
+              data: book.image.data.toString('base64'), 
               contentType: book.image.contentType
           } : null 
         }));
@@ -709,12 +712,12 @@ app.get('/comic', async (req, res) => {
 
         const books = await Com.find(query);
 
-        // Convert image data to base64
+     
         const booksWithBase64Image = books.map(book => {
             return {
                 ...book._doc,
                 image: {
-                    data: book.image.data.toString('base64'), // Convert buffer to base64 string
+                    data: book.image.data.toString('base64'), 
                     contentType: book.image.contentType
                 }
             };

@@ -170,7 +170,7 @@ function logout() {
     }).then(response => {
         if (response.ok) {
             console.log("Logged out successfully");
-            window.location.href="/templates/index.html";
+            window.location.href = "../index.html";
         } else {
             console.error("Logout failed");
         }

@@ -528,7 +528,7 @@ async function users() {
                                     <hr>
                                     <li style="color:red;">Due Date: ${formattedDueDate}</li>    
                                     <li style="color:#000;cursor:pointer; font-family: Montserrat, sans-serif;font-optical-sizing: auto;font-weight: 500;font-style: normal;color:#fff;" data-id="${item._id}">
-                                        <a href="mailto:${itemsData.userEmail}?subject=Request%20for%20Returning Item&body=Dear%20[${itemsData.userName}],%0A%0AI%20hope%20this%20message%20finds%20you%20well.%20I%20am%20writing%20to%20request%20the%20Returning%20Book%20of%20the%20following%20item%20from%20our%20system:%0A%0A-Item%20Name:%20${item.name}%0A%0ACould%20you%20please%20assist%20in%20promptly%20removing%20this%20item%20entry%20from%20our%20records?%0A%0AThank%20you%20for%20your%20attention%20to%20this%20request.%20Please%20let%20me%20know%20if%20you%20require%20any%20further%20information.%0A%0ABest%20regards,%0A[Your%20Name]" style="text-decoration:none; color:black;">Send Email</a>
+                                        <a href="mailto:${itemsData.userEmail}?subject=Request%20for%20Returning Item&body=Dear%20[${itemsData.userName}],%0A%0AI%20hope%20this%20message%20finds%20you%20well.%20I%20am%20writing%20to%20request%20the%20Returning%20Book%20of%20the%20following%20item%20from%20our%20system:%0A%0A-${item.type}%20Name:%20${item.name}%0A%0A%0AThank%20you%20for%20your%20attention%20to%20this%20request.%20Please%20let%20me%20know%20if%20you%20require%20any%20further%20information.%0A%0ABest%20regards,%0A[Your%20Name]" style="text-decoration:none; color:black;">Send Email</a>
                                     </li>
                                 </ul>
                             </div>
@@ -708,7 +708,7 @@ function logout() {
     }).then(response => {
         if (response.ok) {
             console.log("Logged out successfully");
-            window.location.href="/templates/index.html";
+            window.location.href = "../index.html";
         } else {
             console.error("Logout failed");
         }

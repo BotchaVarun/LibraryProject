@@ -19,10 +19,11 @@ const options = {
     {
       alert("sign in successfully");
       if(email=="varunbotcha@gmail.com"&&password==="1234"){
-        window.location.href="/templates/admin.html";
+        window.location.href = "templates/admin.html";
+
       }
       else{
-      window.location.href="/templates/student.html";
+        window.location.href = "templates/student.html";
       }
     }
     else{
