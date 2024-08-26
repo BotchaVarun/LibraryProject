@@ -72,39 +72,45 @@
         <p>Copyright &#169; 2024 Grandhalayam . All Rights Reserved.</p>
     </footer>
     <script>
-      async function signUp() {
+          async function signUp() {
         
 
-        const name = document.getElementById("name").value;
-        const phoneno = document.getElementById("number").value;
-        const email = document.getElementById("email").value;
-        const password = document.getElementById("password").value;
-        console.log(email,phoneno,name,password)
-        const options = {
-          method: "POST",
-          headers: {
+// Determine the base URL based on the environment
+const apiBaseUrl = window.location.hostname === 'localhost' ? 'http://localhost:3002' : 'https://library-project-tau.vercel.app';
+
+async function signupUser() {
+    const name = document.getElementById("name").value;
+    const phoneno = document.getElementById("number").value;
+    const email = document.getElementById("email").value;
+    const password = document.getElementById("password").value;
+    
+    console.log(email, phoneno, name, password);
+
+    const options = {
+        method: "POST",
+        headers: {
             "Content-Type": "application/json"
-          },
-          body: JSON.stringify({ name, phoneno, email, password })
-        };
+        },
+        body: JSON.stringify({ name, phoneno, email, password })
+    };
 
-        try {
-          const res = await fetch("http://localhost:3002/signup", options);
+    try {
+        const res = await fetch(`${apiBaseUrl}/signup`, options);
 
-          if (res.status === 201) {
+        if (res.status === 201) {
             alert("User created successfully");
-            window.location.href = "../index.html";
-          } else if (res.status === 409) {
+            window.location.href = "/templates/index.html";
+        } else if (res.status === 409) {
             alert("User with this email already exists");
-          } else {
+        } else {
             alert("An error occurred while signing up");
-          }
-        } catch (error) {
-          console.error("Error:", error);
-          alert("An error occurred while signing up");
         }
+    } catch (error) {
+        console.error("Error:", error);
+        alert("An error occurred while signing up");
+    }
+}
       }
-      
     </script>
     
 
