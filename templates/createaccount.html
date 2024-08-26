@@ -72,13 +72,9 @@
         <p>Copyright &#169; 2024 Grandhalayam . All Rights Reserved.</p>
     </footer>
     <script>
-          async function signUp() {
-        
+       const apiBaseUrl = window.location.hostname === 'localhost' ? 'http://localhost:3002' : 'https://library-project-tau.vercel.app';
 
-// Determine the base URL based on the environment
-const apiBaseUrl = window.location.hostname === 'localhost' ? 'http://localhost:3002' : 'https://library-project-tau.vercel.app';
-
-async function signupUser() {
+async function signUp() {
     const name = document.getElementById("name").value;
     const phoneno = document.getElementById("number").value;
     const email = document.getElementById("email").value;
@@ -110,7 +106,7 @@ async function signupUser() {
         alert("An error occurred while signing up");
     }
 }
-      }
+
     </script>
     
 
