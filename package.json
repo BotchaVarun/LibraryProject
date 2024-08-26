@@ -2,8 +2,9 @@
   "name": "library",
   "version": "1.0.0",
   "main": "server.js",
+
   "scripts": {
-     "start": "node api/server.js",
+     "start": "node server.js",
     "server": "nodemon server.js"
   },
   "author": "",
