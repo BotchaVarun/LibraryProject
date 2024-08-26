@@ -1,5 +1,5 @@
 // Determine the base URL based on the environment
-const apiBaseUrl = window.location.hostname === 'localhost' ? 'http://localhost:3002' : 'https://library-project-tau.vercel.app';
+const apiBaseUrl = window.location.hostname === 'localhost' ? 'http://localhost:3002' : 'https://library-project-tau.vercel.app/api';
 
 async function myFunction() {
     var email = document.getElementById("email").value;
