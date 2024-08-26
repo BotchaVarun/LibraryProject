@@ -8,27 +8,28 @@ const storage = multer.memoryStorage();
 const upload = multer({ storage: storage });
 app.use(upload.single('image'));
 
+// CORS configuration
 const corsOptions = {
-  origin: 'http://127.0.0.1:5501',
-  optionsSuccessStatus: 200 
+  origin: process.env.FRONTEND_URL, // Use an environment variable for the frontend URL
+  optionsSuccessStatus: 200,
 };
 
 app.use(cors(corsOptions));
 app.use(express.json());
-
 app.get("/add", (req, res) => {
   return res.send("<h1>Hello</h1>");
 });
 
-const server = '127.0.0.1:27017'; 
-const database = 'main'; 
-mongoose.connect(`mongodb://${server}/${database}`, { useNewUrlParser: true, useUnifiedTopology: true })
-    .then(() => {
-        console.log('Database connection successful');
-    })
-    .catch((err) => {
-        console.error('Database connection failed', err);
-});
+// MongoDB Atlas connection string
+const mongoURI = process.env.MONGO_URI;
+
+mongoose.connect(mongoURI, { useNewUrlParser: true, useUnifiedTopology: true })
+  .then(() => {
+    console.log("Database connection successful");
+  })
+  .catch((err) => {
+    console.error("Database connection failed", err);
+  });
 
 const userSchema = new mongoose.Schema({
   name:String,
@@ -290,7 +291,7 @@ app.delete('/deletecom/:id', (req, res) => {
             res.status(500).json({ error: 'Error deleting magazine' });
         });
 });
-// PUT route to update book status and takenBy
+//  update book status and takenBy
 app.put('/books/:id', bodyparser.json(), (req, res) => {
   const bookId = req.params.id;
   const newStatus = req.body.status;
