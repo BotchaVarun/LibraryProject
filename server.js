@@ -89,7 +89,7 @@ const Com = mongoose.model("Com",comicSchema);
 var jsonparser = bodyparser.json();
 
 
-app.post("/api/signup", jsonparser, (req, res) => {
+app.post("/signup", jsonparser, (req, res) => {
   const { name, phoneno, email, password } = req.body;
 
   User.findOne({ email })
